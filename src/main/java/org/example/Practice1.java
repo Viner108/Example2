@@ -3,7 +3,7 @@ package org.example;
 public class Practice1 {
     /**
      * Идея
-     * Программа находит число в массиве и говорит его индекс
+     * Программа находит число в массиве и говорит его индекс.
      */
     public static void main(String[] args) {
         int[] lines = new int[]{1, 2, 3, 4};
