@@ -17,35 +17,76 @@ public class SpiralArray {
     }
 
     private static int getSpiralMatrixX(int[][] result, int counter, int x) {
+        boolean direction = false;
+        int corner = 1;
         int length1 = result.length - x;
         int length2 = result[result.length - 1].length - x;
-        for (int i = x; i < length1; i++) {
-            int j = x;
-            if (result[i][j] == 0) {
-                result[i][j] = counter;
-                counter++;
+        switch (corner){
+            case 1:{
+                if(direction) {
+                    counter = getAnInt1(result, counter, x, length1);
+                    counter = getAnInt2(result, counter, x, length1, length2);
+                    counter = getAnInt3(result, counter, x, length1, length2);
+                    counter = getAnInt4(result, counter, x, length2);
+                }else {
+                    counter = ReverseSpiralArray.getAnInt1(result, counter, x, length2);
+                    counter = ReverseSpiralArray.getAnInt2(result, counter, x, length1, length2);
+                    counter = ReverseSpiralArray.getAnInt3(result, counter, x, length1, length2);
+                    counter = ReverseSpiralArray.getAnInt4(result, counter, x, length1);
+                }
+                break;
+            }
+            case 2:{
+
+            }
+            case 3:{
+
+                break;
+            }
+            case 4:{
+
+                break;
             }
         }
-        for (int j = 1 + x; j < length2; j++) {
-            int i = length1 - 1;
-            if (result[i][j] == 0) {
-                result[i][j] = counter;
-                counter++;
-            }
-        }
-        for (int i = length1 - 2; i > x; i--) {
-            int j = length2 - 1;
-            if (result[i][j] == 0) {
-                result[i][j] = counter;
-                counter++;
-            }
-        }
+        return counter;
+    }
+
+    private static int getAnInt4(int[][] result, int counter, int x, int length2) {
         for (int j = length2 - 1; j > x; j--) {
             int i = x;
-            if (result[i][j] == 0) {
-                result[i][j] = counter;
-                counter++;
-            }
+            counter = getCounter(result, counter, j, i);
+        }
+        return counter;
+    }
+
+    private static int getAnInt3(int[][] result, int counter, int x, int length1, int length2) {
+        for (int i = length1 - 2; i > x; i--) {
+            int j = length2 - 1;
+            counter = getCounter(result, counter, j, i);
+        }
+        return counter;
+    }
+
+    private static int getAnInt2(int[][] result, int counter, int x, int length1, int length2) {
+        for (int j = 1 + x; j < length2; j++) {
+            int i = length1 - 1;
+            counter = getCounter(result, counter, j, i);
+        }
+        return counter;
+    }
+
+    private static int getAnInt1(int[][] result, int counter, int x, int length1) {
+        for (int i = x; i < length1; i++) {
+            int j = x;
+            counter = getCounter(result, counter, x, i);
+        }
+        return counter;
+    }
+
+    private static int getCounter(int[][] result, int counter, int j, int i) {
+        if (result[i][j] == 0) {
+            result[i][j] = counter;
+            counter++;
         }
         return counter;
     }
