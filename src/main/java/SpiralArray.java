@@ -5,12 +5,17 @@ public class SpiralArray {
         int x = 0;
         int counter = 1;
         int[][] result = new int[n][m];
+        ending1(n, m, x, counter, result);
+    }
+
+    private static void ending1(int n, int m, int x, int counter, int[][] result) {
         while (counter <= n * m) {
             counter = getSpiralMatrixX(result, counter, x);
             x++;
         }
         printLines(result);
     }
+
     private static int getSpiralMatrixX(int[][] result, int counter, int x) {
         int length1 = result.length - x;
         int length2 = result[result.length - 1].length - x;
