@@ -1,14 +1,14 @@
-public class SpiralArray2 {
+public class SpiralArray3 {
     public static void main(String[] args) {
-        int n = 1;
-        int m = 1;
+        int n = 10;
+        int m = 10;
         int x = 0;
         int counter = 1;
         int[][] result = new int[n][m];
-        ending3(n, m, x, counter, result);
+        ending4(n, m, x, counter, result);
     }
 
-    private static void ending3(int n, int m, int x, int counter, int[][] result) {
+    private static void ending4(int n, int m, int x, int counter, int[][] result) {
         while (counter <= n * m) {
             counter = getSpiralMatrixX(result, counter, x);
             x++;
@@ -19,29 +19,29 @@ public class SpiralArray2 {
     private static int getSpiralMatrixX(int[][] result, int counter, int x) {
         int length1 = result.length - x;
         int length2 = result[result.length - 1].length - x;
-        for (int j = x; j < length2; j++) {
-            int i = length1 - 1;
+        for (int i = length1-1; i > x-1; i--) {
+            int j = length2-1;
             if (result[i][j] == 0) {
                 result[i][j] = counter;
                 counter++;
             }
         }
-        for (int i = length1 - 2; i > x; i--) {
-            int j = length2 - 1;
-            if (result[i][j] == 0) {
-                result[i][j] = counter;
-                counter++;
-            }
-        }
-        for (int j = length2 - 1; j > x; j--) {
+        for (int j = length2 - 1; j > x-1; j--) {
             int i = x;
             if (result[i][j] == 0) {
                 result[i][j] = counter;
                 counter++;
             }
         }
-        for (int i = x; i < length1; i++) {
+        for (int i = x+1; i < length1&& i>=0; i++) {
             int j = x;
+            if (result[i][j] == 0) {
+                result[i][j] = counter;
+                counter++;
+            }
+        }
+        for (int j = x+1; j < length2 && j>=0; j++) {
+            int i = length1 - 1;
             if (result[i][j] == 0) {
                 result[i][j] = counter;
                 counter++;

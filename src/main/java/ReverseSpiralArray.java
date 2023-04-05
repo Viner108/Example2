@@ -1,7 +1,7 @@
 public class ReverseSpiralArray {
     public static void main(String[] args) {
-            int n = 10;
-            int m = 10;
+            int n = 1;
+            int m = 1;
             int x = 0;
             int counter = 1;
             int[][] result = new int[n][m];
